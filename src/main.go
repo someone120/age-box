@@ -29,6 +29,11 @@ func main() {
 	newMd.Write([]byte(strconv.Itoa(time.Now().Local().Year() - year)))
 
 	newMd.Write(after)
+	err = ioutil.WriteFile("README.md", newMd.Bytes(), os.ModeAppend)
+	if err != nil {
+		fmt.Errorf("steambox.UpdateMarkdown: Error writing a file: %w", err)
+	}
+
 	fmt.Println("================================")
 	fmt.Println("agebox.UpdateMarkdown: Successfully updated")
 }
